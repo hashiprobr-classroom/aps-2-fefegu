@@ -87,7 +87,7 @@ void fft_inverse(complex t[], complex s[], int n) {
 void fft_forward_2d(complex matrix[MAX_SIZE][MAX_SIZE], int width, int height) {
     complex c[height];
     complex tc[height];
-    for(int i = 0; i < width; i++){ // aplicando fft_forward em coluna
+    for(int i = 0; i < width; i++){ 
         for(int k = 0; k < height;k++){
             c[k] = matrix[k][i];
         }
@@ -99,7 +99,7 @@ void fft_forward_2d(complex matrix[MAX_SIZE][MAX_SIZE], int width, int height) {
     }
 
     complex tl[width];
-    for (int i = 0; i < height; i++) { // aplicando fft_forward em linha
+    for (int i = 0; i < height; i++) { 
         fft_forward(matrix[i], tl, width);
 
         for (int k = 0; k < width; k++) {
@@ -110,7 +110,7 @@ void fft_forward_2d(complex matrix[MAX_SIZE][MAX_SIZE], int width, int height) {
 
 void fft_inverse_2d(complex matrix[MAX_SIZE][MAX_SIZE], int width, int height) {
     complex tl[width];
-    for (int i = 0; i < height; i++) { // aplicando fft_inverse em linha
+    for (int i = 0; i < height; i++) { 
         fft_inverse(matrix[i], tl, width);
 
         for (int k = 0; k < width; k++) {
@@ -120,7 +120,7 @@ void fft_inverse_2d(complex matrix[MAX_SIZE][MAX_SIZE], int width, int height) {
 
     complex c[height];
     complex tc[height];
-    for(int i = 0; i < width; i++){ // aplicando fft_inverse em coluna
+    for(int i = 0; i < width; i++){ 
         for(int k = 0; k < height;k++){
             c[k] = matrix[k][i];
         }
