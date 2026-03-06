@@ -50,6 +50,29 @@ void fft(complex s[], complex t[], int n, int sign) {
         si[i] = s[2 * i + 1];
     }
 
+    complex tp[n/2];
+    complex ti[n/2];
+
+    fft(sp,tp,n/2,sign);
+    fft(si,ti,n/2,sign);
+
+    for (int k = 0; k < n / 2; k++) {
+        double x = sign * 2 * PI * k / n;
+
+        double cosx = cos(x);
+        double sinx = sin(x);
+
+        complex t1;
+        t1.a = tp[k].a + cosx * ti[k].a - sinx * ti[k].b;
+        t1.b = tp[k].b + cosx * ti[k].b + sinx * ti[k].a;
+
+        complex t2;
+        t2.a = tp[k].a - cosx * ti[k].a + sinx * ti[k].b;
+        t2.b = tp[k].b - cosx * ti[k].b - sinx * ti[k].a;
+
+        t[k] = t1;
+        t[k + n / 2] = t2;
+    }
 }
 
 void fft_forward(complex s[], complex t[], int n) {
